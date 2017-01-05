@@ -1,0 +1,7 @@
+{
+  "generator-phaser": {
+    "projectName": "phaser-flappy-bird",
+    "esVersion": 6,
+    "gameFolder": "game"
+  }
+}
