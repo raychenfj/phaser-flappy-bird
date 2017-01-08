@@ -8,8 +8,8 @@ class Preloader extends Phaser.State {
 
   preload() {
     //setup loading bar
-    this.asset = this.add.sprite(this.game.width * 0.5 - 110, this.game.height * 0.5 - 10, 'preloader');
-    this.load.setPreloadSprite(this.asset);
+    // this.asset = this.add.sprite(this.game.width * 0.5 - 110, this.game.height * 0.5 - 10, 'preloader');
+    // this.load.setPreloadSprite(this.asset);
 
     //Setup loading and its events
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
@@ -17,15 +17,33 @@ class Preloader extends Phaser.State {
   }
 
   loadResources() {
-    this.game.load.image('background','assets/bg_wood.png');
-    this.game.load.image('crosshairs', 'assets/crosshair_red_small.png');
-    this.game.load.image('text_go', 'assets/text_go.png');
-    this.game.load.image('text_ready', 'assets/text_ready.png');
+    let image = this.load.image.bind(this.load);
+    let spritesheet = this.load.spritesheet.bind(this.load);
+    let audio = this.load.audio.bind(this.load);
 
-    this.game.load.spritesheet('target', 'assets/target.png',128.66,128);
+    // Images
+    image('day', 'assets/background/day.png');
+    image('pipe-top', 'assets/pipes/pipe_top.png');
+    image('pipe-bottom', 'assets/pipes/pipe_bottom.png');
+    image('ground', 'assets/background/ground.png');
+    image('board', 'assets/board.png');
 
-    this.game.load.audio('gunshot','assets/gunshot.wav');
-    this.game.load.audio('ding','assets/ding.wav');
+    // Text
+    ['title', 'ready', 'tap', 'over'].forEach(el => image(el, `assets/text/${el}.png`));
+
+    // Numbers
+    for (let i = 0; i < 10; i++) {
+      image(i, 'assets/numbers/' + i + '.png');
+    }
+
+    // Buttons
+    image('start', 'assets/buttons/start.png');
+
+    // Spritesheet
+    spritesheet('bird', 'assets/birds/bird.png', 19, 14);
+
+    // Audio
+    ['die', 'hit', 'point', 'swooshing', 'wing'].forEach(el => audio(el, `assets/audio/${el}.wav`));
   }
 
   onLoadComplete() {
