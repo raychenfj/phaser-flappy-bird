@@ -60,7 +60,7 @@ class Game extends Phaser.State {
 
     if (this.bird.alive) {
       if (this.bird.body.allowGravity && this.bird.angle < 90) {
-        this.bird.angle++;
+        this.bird.angle+=2;
       } else {
         this.bird.play('fly');
       }
@@ -208,6 +208,9 @@ class Game extends Phaser.State {
   hitPipe() {
     if (this.bird.alive === false) return;
 
+    this.game.camera.flash();
+    this.game.camera.shake(0.02);
+
     this.audio.hit.onStop.removeAll();
     this.audio.hit.onStop.add(() => this.audio.die.play());
     this.audio.hit.play();
@@ -235,8 +238,10 @@ class Game extends Phaser.State {
   }
 
   hitGround() {
-    console.log(this.bird.body.immovable);
     if (this.bird.alive === false) return;
+
+    this.game.camera.flash();
+    this.game.camera.shake(0.02);
 
     this.audio.hit.onStop.removeAll();
     this.audio.hit.play();
