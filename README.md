@@ -1,2 +1,2 @@
 # phaser-flappy-bird
-Flappy Bird build opon phaser
+yet another flappy bird clone built with phaser

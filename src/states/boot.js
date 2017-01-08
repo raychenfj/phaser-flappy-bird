@@ -8,10 +8,6 @@ class Boot extends Phaser.State {
         this.game.renderer.renderSession.roundPixels = true;
     }
 
-    // preload() {
-    //   this.load.image('preloader', 'assets/preloader.gif');
-    // }
-
     create() {
         this.game.input.maxPointers = 1;
         this.game.scale.pageAlignHorizontally = true;
@@ -29,17 +25,8 @@ class Boot extends Phaser.State {
             this.game.scale.minHeight = this.game.scale.maxHeight = 768;
         }
 
-        // this.initGlobalVariables();
-
         this.game.state.start('preloader');
     }
-
-    // initGlobalVariables(){
-    //   this.game.global = {
-    //     score: 0
-    //   };
-    // }
-
 }
 
 export default Boot;

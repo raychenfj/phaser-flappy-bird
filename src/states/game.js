@@ -3,9 +3,8 @@ import Target from '../prefabs/target';
 import Util from '../util';
 
 const ANGLE = 30;
-
-const SPACE = 64
-const Y = [-128, -96, -64, -32]
+const SPACE = 64;
+const Y = [-128, -96, -64, -32];
 
 class Game extends Phaser.State {
 
@@ -60,7 +59,7 @@ class Game extends Phaser.State {
 
     if (this.bird.alive) {
       if (this.bird.body.allowGravity && this.bird.angle < 90) {
-        this.bird.angle+=2;
+        this.bird.angle += 2;
       } else {
         this.bird.play('fly');
       }
@@ -197,6 +196,7 @@ class Game extends Phaser.State {
 
   jump() {
     if (!this.bird.alive) return;
+
     let animation = this.game.add.tween(this.bird);
     animation.to({ angle: -ANGLE }, 100);
     animation.start();
@@ -208,8 +208,7 @@ class Game extends Phaser.State {
   hitPipe() {
     if (this.bird.alive === false) return;
 
-    this.game.camera.flash();
-    this.game.camera.shake(0.02);
+    this.shock();
 
     this.audio.hit.onStop.removeAll();
     this.audio.hit.onStop.add(() => this.audio.die.play());
@@ -222,11 +221,11 @@ class Game extends Phaser.State {
     // remove the timer
     this.game.time.events.remove(this.timer);
 
-    // Stop moving the pipes and ground
+    // stop moving the pipes and ground
     this.pipes.setAll('body.velocity.x', 0)
     this.ground.body.velocity.x = 0;
 
-    // Dead animation
+    // die animation
     this.bird.body.gravity.y = 400;
     let tween = this.game.add.tween(this.bird);
     tween.to({ angle: 90 }, 500, Phaser.Easing.Exponential.In);
@@ -240,8 +239,7 @@ class Game extends Phaser.State {
   hitGround() {
     if (this.bird.alive === false) return;
 
-    this.game.camera.flash();
-    this.game.camera.shake(0.02);
+    this.shock();
 
     this.audio.hit.onStop.removeAll();
     this.audio.hit.play();
@@ -257,6 +255,11 @@ class Game extends Phaser.State {
     this.ground.body.velocity.x = 0;
 
     this.time.events.repeat(500, 0, () => this.onGameOver());
+  }
+
+  shock() {
+    this.game.camera.flash();
+    this.game.camera.shake(0.02);
   }
 
   onGameOver() {
