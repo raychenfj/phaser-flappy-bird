@@ -7,10 +7,6 @@ class Preloader extends Phaser.State {
   }
 
   preload() {
-    //setup loading bar
-    // this.asset = this.add.sprite(this.game.width * 0.5 - 110, this.game.height * 0.5 - 10, 'preloader');
-    // this.load.setPreloadSprite(this.asset);
-
     //Setup loading and its events
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.loadResources();
@@ -34,6 +30,7 @@ class Preloader extends Phaser.State {
     // Numbers
     for (let i = 0; i < 10; i++) {
       image(i, 'assets/numbers/' + i + '.png');
+      image('md'+i, 'assets/numbers/md' + i + '.png');
     }
 
     // Buttons
@@ -44,6 +41,9 @@ class Preloader extends Phaser.State {
 
     // Audio
     ['die', 'hit', 'point', 'swooshing', 'wing'].forEach(el => audio(el, `assets/audio/${el}.wav`));
+
+    // Medals
+    ['bronze','gold','platinum','silver'].forEach(el=>image(el,`assets/medals/${el}.png`));
   }
 
   onLoadComplete() {
