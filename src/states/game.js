@@ -31,7 +31,7 @@ class Game extends Phaser.State {
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        this.game.physics.arcade.gravity.y = 400;
+        this.game.physics.arcade.gravity.y = 800;
 
         this.game.add.tween(this.game.world).to({ alpha: 1 }, 200, Phaser.Easing.Default.In, true);
     }
@@ -50,13 +50,13 @@ class Game extends Phaser.State {
         // pipes
         this.pipes = add.physicsGroup();
 
-        // bird
-        this.bird = new Bird(game, 30, 0, 'bird');
-        add.existing(this.bird);
-
         // ground
         this.ground = new Ground(game, world);
         add.existing(this.ground);
+
+        // bird
+        this.bird = new Bird(game, 30, 0, 'bird');
+        add.existing(this.bird);
 
         // score
         this.score = new Score(game, '', world);

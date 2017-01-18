@@ -14,7 +14,7 @@ export default class Ground extends Phaser.Sprite {
     }
 
     reset() {
-        this.body.velocity.x = -100;
+        this.body.velocity.x = -60;
     }
 
     update() {

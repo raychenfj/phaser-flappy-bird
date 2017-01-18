@@ -6,7 +6,7 @@ export default class Pipe extends Phaser.Group {
         this.enableBody = true;
         
         this.topPipe = this.create(world.width, 0, 'pipe-top');
-        this.topPipe.y = (Math.floor(Math.random() * 5) + 1) * world.height / 8 - this.topPipe.height;
+        this.topPipe.y = (Math.floor(Math.random() * 3) + 2) * world.height / 8 - this.topPipe.height;
 
         this.bottomPipe = this.create(world.width, 0, 'pipe-bottom');
         this.bottomPipe.y = this.topPipe.y + this.topPipe.height + world.height / 8 * 2;
@@ -15,7 +15,7 @@ export default class Pipe extends Phaser.Group {
 
         this.setAll('body.allowGravity', false);
         this.setAll('body.immovable', true);
-        this.setAll('body.velocity.x', -100);
+        this.setAll('body.velocity.x', -60);
         this.setAll('checkWorldBounds', true);
         this.setAll('outOfBoundsKill', true);
     }

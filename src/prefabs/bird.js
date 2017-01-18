@@ -5,7 +5,7 @@ export default class Bird extends Phaser.Sprite {
         super(game, x, y, key, 1);
 
         this.alive = true;
-        this.animations.add('fly', [0, 1, 2, 0, 1, 2], 10, false);
+        this.animations.add('fly', [0, 1, 2, 0, 1, 2], 5, false);
         Util.vcenter(this, this.game.world);
         this.anchor.set(0.3, 0.5);
         this.game.physics.enable(this);
@@ -26,7 +26,7 @@ export default class Bird extends Phaser.Sprite {
             let tween = this.game.add.tween(this);
             tween.to({ angle: -30 }, 100);
             tween.start();
-            this.body.velocity.y = -150;
+            this.body.velocity.y = -200;
             this.wing.play();
             this.play('fly');
             this.tween.pause();
@@ -51,7 +51,6 @@ export default class Bird extends Phaser.Sprite {
         // this.body.immovable = immovable;
 
         // die animation
-        this.body.gravity.y = 400;
         let tween = this.game.add.tween(this);
         tween.to({ angle: 90 }, 500, Phaser.Easing.Exponential.In);
         this.body.immovable = false;
