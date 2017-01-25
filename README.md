@@ -17,10 +17,14 @@ I Try to clone the full game and implement as much detail as I can. Including al
 
 ## Demo
 
-play it [here ]().
+play it [here ](https://raychenfj.github.io/phaser-flappy-bird/).
 
 ## Install
 
 Simply clone or download this repo, and like any other javascript project, run `npm install` and `npm start`.
 
 Visit `http://192.168.1.2:9966/` to start the game.
+
+## License
+
+MIT
